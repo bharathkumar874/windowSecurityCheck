@@ -35,6 +35,45 @@
 							token: "Hello!!!",
 							success: true
 						});
+			//Office.initialize = function () {
+				if (Office && Office.context && Office.context.ui) {
+					
+					Office.context.ui.messageParent(message);
+				}
+				else{
+					Office.initialize = function () {
+						if (Office && Office.context && Office.context.ui) {
+							
+							Office.context.ui.messageParent(message);
+						}
+					}
+				}
+			//}
+		}
+		
+		Office.initialize = function () { };
+		Office.onReady(function () {
+		  if (Office && Office.context && Office.context.ui) {
+				Office.context.ui.addHandlerAsync(
+				Office.EventType.DialogMessageReceived, 
+				onMessageFromParent 
+				);  
+			}
+		});
+		
+		
+
+		<!-- function onRegisterMessageComplete(asyncResult) { -->
+			<!-- if (asyncResult.status !== Office.AsyncResultStatus.Succeeded) { -->
+				<!-- reportError(asyncResult.error.message); -->
+			<!-- } -->
+		<!-- } -->
+		
+		function onMessageFromParent(event) {
+			var message = JSON.stringify({
+							token: "Ready!!!",
+							success: true
+						});
 			Office.initialize = function () {
 				if (Office && Office.context && Office.context.ui) {
 					
@@ -42,7 +81,6 @@
 				}
 			}
 		}
-		
         setTimeout(function () {
             <!-- document.querySelector("#auth").style.display = "none"; -->
             <!-- var client = window.location.href.split("?client=")[1]; -->
