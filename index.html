@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+    <style>
+        #auth,
+        #redirect,
+        #errorclient {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <br />
+    <!-- <h1 id="auth">Authenticating...</h1> -->
+    <!-- <h1 id="redirect">Authentication successfull, sending message to the client...</h1> -->
+    <!-- <h2 style="color: red;" id="errorclient">Authentication successfull, invalid client...</h2> -->
+	<h2 style="color: green;" onclick="clickMe()">Click me</h2>
+    <br />
+    <script>
+        <!-- document.querySelector("#auth").style.display = "block"; -->
+		
+		function newMethod(){
+			console.log("new method called");
+		}
+		
+		function clickMe(){
+			console.log("clickMe triggered");
+			var message = JSON.stringify({
+							token: "Hello!!!",
+							success: true
+						});
+			Office.initialize = function () {
+				if (Office && Office.context && Office.context.ui) {
+					
+					Office.context.ui.messageParent(message);
+				}
+			}
+		}
+		
+        setTimeout(function () {
+            <!-- document.querySelector("#auth").style.display = "none"; -->
+            <!-- var client = window.location.href.split("?client=")[1]; -->
+            <!-- client = client.split("&")[0]; -->
+            <!-- if (client) { -->
+                <!-- setTimeout(function () { -->
+                    <!-- switch (client) { -->
+                        <!-- case "office": -->
+                            <!-- var message = JSON.stringify({ -->
+                                <!-- token: "BBAFJGKAGHFNKHAUYS827497239846234jkjjhsdfhdfjhh==", -->
+                                <!-- success: true -->
+                            <!-- }); -->
+                            <!-- Office.initialize = function () { -->
+                                <!-- if (Office && Office.context && Office.context.ui) { -->
+                                    <!-- document.querySelector("#redirect").style.display = "block"; -->
+                                    <!-- Office.context.ui.messageParent(message); -->
+                                <!-- } -->
+                                <!-- else { -->
+                                    <!-- document.querySelector("#errorclient").style.display = "block"; -->
+                                <!-- } -->
+                            <!-- } -->
+                            <!-- break; -->
+                        <!-- default: -->
+                            <!-- document.querySelector("#errorclient").style.display = "block"; -->
+                            <!-- break; -->
+                    <!-- } -->
+                <!-- }, 1000); -->
+            <!-- } -->
+            <!-- else { -->
+                <!-- document.querySelector("#errorclient").style.display = "block"; -->
+            <!-- } -->
+
+        }, 3000)
+    </script>
+</body>
+
+</html>
