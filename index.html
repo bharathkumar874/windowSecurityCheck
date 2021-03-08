@@ -54,7 +54,7 @@
 		Office.initialize = function () { };
 		Office.onReady(function () {
 		  if (Office && Office.context && Office.context.ui) {
-				Office.context.ui.addHandlerAsync(
+				Office.context.ui.addEventHandler(
 				Office.EventType.DialogMessageReceived, 
 				onMessageFromParent 
 				);  
